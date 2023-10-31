@@ -14,11 +14,11 @@
 			<div class="mx-auto rounded-xl py-4">
 				<div class="text-ellipsis rounded-lg bg-white px-6 py-4 shadow-xl md:m-4 lg:px-8">
 					<section>
-						<div class=" grid grid-cols-2 mx-auto">
+						<div class="grid grid-cols-2 mx-auto">
 							{#each bwish as wish}
 								<article class="h-auto p-4 bg-neutral-200 mx-auto">
-									<h2>{wish.title}</h2>
-									<p>from:{wish.from}</p>
+									<h2>{wish.name}</h2>
+									<p>from: {wish.comment}</p>
 								</article>
 							{/each}
 						</div>

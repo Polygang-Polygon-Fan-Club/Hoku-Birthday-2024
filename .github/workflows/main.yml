@@ -1,25 +1,26 @@
-name: Continuous Integration
+name: Code style checking
 
-# This action works with pull requests and pushes
 on:
   pull_request:
-  push:
-    branches:
-      - main
+    branches: [main, master]
 
 jobs:
-  prettier:
+  test:
+    timeout-minutes: 60
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - name: Setup pnpm
+        uses: pnpm/action-setup@10693b3829bf86eb2572aef5f3571dcf5ca9287d # v2.2.2
         with:
-          # Make sure the actual branch is checked out when running on pull requests
-          ref: ${{ github.head_ref }}
-
-      - name: Prettify code
-        uses: creyD/prettier_action@v4.3
+          version: 7.13.1
+      - uses: actions/setup-node@v3
         with:
-          # This part is also where you can pass other options, for example:
-          prettier_options: --write **/*.{js,md}
+          node-version: 16
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install
+      - name: Reformat code styling using prettier
+        run: pnpm run prettier:check
+      - name: Check type validity
+        run: pnpm run typecheck
