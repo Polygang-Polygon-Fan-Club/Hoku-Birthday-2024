@@ -2,11 +2,11 @@ import { bwish } from '$db/tutorials';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async function () {
-	const data = await bwish
-		.find({}, { limit: 50, projection: { title: 1, from: 1, _id: 0 } })
+	const datas = await bwish
+		.find({}, { limit: 50, projection: { _id: 0, data : {name: 1, comment: 1,  } }})
 		.toArray();
-	console.log(data);
+	console.log(datas);
 	return {
-		bwish: data
+		bwish: datas
 	};
 };

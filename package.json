@@ -38,7 +38,10 @@
 	"type": "module",
 	"dependencies": {
 		"flowbite-svelte-icons": "^0.4.4",
+		"missing": "^0.0.1",
 		"mongodb": "^6.2.0",
-		"pnpm": "^8.10.0"
+		"peer": "^1.0.1",
+		"pnpm": "^8.10.0",
+		"tailwind-merge": "1.13.2"
 	}
 }
